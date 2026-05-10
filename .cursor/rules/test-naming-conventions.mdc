@@ -1,0 +1,204 @@
+---
+description: 'E2E test naming standards — Subject + Should + Outcome pattern for Playwright tests'
+globs:
+  - 'tests/**/*_spec.ts'
+  - 'tests/**/*_views.ts'
+alwaysApply: false
+---
+
+# E2E Test Naming Conventions
+
+Internal standards for `test.describe` and `test()` descriptions in Playwright E2E tests.
+
+## Core Principles
+
+### 1. The "Subject + Should + Outcome" Rule
+
+Test names are read as a concatenation of `describe` and `test`:
+
+```
+describe('Subject') + test('should [outcome] when [trigger]')
+→ "Subject should [outcome] when [trigger]"
+```
+
+The result must read as a natural English sentence. A reader should know what _changed_ or what _state exists_ without reading the test body.
+
+- **Bad:** `describe('login') > test('test login form')`
+- **Good:** `describe('Login page') > test('should redirect to dashboard after successful login')`
+- **Reads as:** `Login page should redirect to dashboard after successful login`
+
+### 2. `test.describe` — The Subject
+
+The `describe` block names **the thing being tested**: a page, component, feature, or flow. It provides the grammatical subject of the sentence.
+
+- **Use nouns or noun phrases:** `'Composer'`, `'Cart page'`, `'Date picker'`, `'Checkout flow'`
+- **Natural English, not code identifiers:** Write describe names as readable phrases with spaces, not PascalCase class names. The name should read like a sentence subject, not a TypeScript import.
+  - **Bad:** `describe('WorkspaceMoreMenu')` — PascalCase code identifier
+  - **Good:** `describe('Workspace more menu')` — natural English noun phrase
+  - **Bad:** `describe('TrialStatusLabel')` — reads like a variable name
+  - **Good:** `describe('Trial status label')` — reads like a sentence subject
+- **No verbs, no conditions:** Those belong in nested describes or the test name itself.
+- **Ground names in the implementation:** `describe` and `test` names should use the same terminology as the actual codebase — component names, feature names, UI labels, and route paths found in the source code. Don't invent names; look at the implementation to find the real names, then write them as natural English.
+  - **Bad:** `describe('Post scheduling view')` when the component is called `CalendarView`
+  - **Good:** `describe('Calendar view')` — matches the actual component name, written as natural English
+  - **Bad:** `'should open the content editor'` when the UI calls it "Composer"
+  - **Good:** `'should open the Composer'` — matches the product terminology
+
+### 3. `test()` — The Assertion
+
+Every `test()` name starts with `should` followed by the **observable outcome** and the **trigger or condition**.
+
+- **Structure:** `should [outcome] when [trigger]` or `should [outcome] after [action]`
+- **Present tense:** Use "open," "display," "disable," "navigate."
+- **No "test" or "verify" prefixes:** The `test()` call and `should` already provide that context.
+
+### 4. The Banned-Word List
+
+These words are too vague to be the **sole descriptor** in a test name:
+
+`properly`, `correctly`, `correct`, `works`, `handles`, `as expected`, `success`, `valid`, `invalid`, `various`, `some`, `different`, `stuff`, `things`, `appropriate`, `right`, `good`, `bad`, `fine`, `okay`
+
+A banned word is acceptable **only** when paired with a specific noun that makes the meaning concrete:
+
+- **Bad:** `'should reject invalid input'` — invalid how?
+- **Good:** `'should reject invalid JWT signature'` — "invalid" qualifies a precise thing.
+- **Bad:** `'should handle errors correctly'` — what errors? what does "correctly" mean?
+- **Good:** `'should show 403 page for expired auth token'` — no banned words needed.
+
+The test: if you removed the banned word, would the name lose real meaning? If yes (`invalid JWT signature` → `JWT signature` changes the meaning), keep it. If no (`handles errors correctly` → `errors` is equally vague), rewrite.
+
+### 5. Length & Uniqueness
+
+- **Length Limit:** Keep the full concatenated path (`describe > test`) under **120 characters**. Long names break terminal output and CI reporters.
+- **Uniqueness:** Ensure every `test()` name within a file is unique to prevent ambiguity in HTML reports and CI logs.
+
+### 6. Team Abbreviations
+
+If an abbreviation is used consistently across the codebase, **use the abbreviation — do not expand it.** Expanding makes names longer, inconsistent with the codebase, and harder to grep.
+
+**Established abbreviations (non-exhaustive):**
+
+If you encounter a new abbreviation used consistently across production code and tests, use it and consider adding it to this list.
+
+**Production + test abbreviations** (appear in `imports/` component/function/route names):
+
+| Abbreviation | Meaning | Production code references |
+| --- | --- | --- |
+| **BTTP** | Best Time To Post | `BTTPCellSlot.tsx`, `isBttpSupportedByPageType.tsx`, `bestTimeToPost.ts` |
+| **GMB** | Google My Business | `parseGmbPosts.ts`, `SidebarPagesCollapse.tsx`, `googleRawApi.ts` |
+| **DnD** | Drag and Drop | used in hook/file names across approvals and calendar |
+| **YT** | YouTube | `submitYtAdvancedSettings()`, `changeYtLicense()` in `AntdModal.ts` |
+
+**Test-convention abbreviations** (established shorthand in test variable/step names):
+
+| Abbreviation | Meaning | Used in |
+| --- | --- | --- |
+| **FB** | Facebook | variable names (`fbPageId`), step names |
+| **TW** | Twitter | variable names (`twPageId`), step names |
+| **IG** | Instagram | variable names (`igPageId`), step names |
+
+**Examples:**
+
+```
+// Bad: expands BTTP, adds unnecessary length
+test('should show best time to post picker')
+
+// Good: uses team abbreviation
+test('should show BTTP picker')
+
+// Bad: expands YT
+test('should not display error after YouTube thumbnail editing')
+
+// Good: keeps YT, follows should-prefix
+test('should not display error after YT thumbnail editing')
+```
+
+---
+
+## `test.describe` Block Nesting
+
+### Rules
+
+- **Top-level `test.describe`:** The subject — a page name, component, or flow. Nouns only.
+- **Nested `test.describe`:** Use `when [condition]` or `with [configuration]` to set up preconditions.
+- **Maximum nesting depth:** 3 levels (subject → condition → test). Deeper nesting signals the test file should be split.
+
+The full path must still read naturally:
+
+```
+CartPage > when cart is empty > should disable checkout button
+```
+
+---
+
+## Naming Patterns
+
+| Scenario             | `test()` Pattern                            | Full Path Example                                               |
+| -------------------- | ------------------------------------------- | --------------------------------------------------------------- |
+| **Simple outcome**   | `should [verb] [noun/detail]`               | `Composer should open when pressing the "C" key`                |
+| **Conditional**      | `should [outcome] when [condition]`         | `Session should redirect to /login when token expires`          |
+| **State change**     | `should [verb] [noun] from [A] to [B]`      | `StatusBadge should change from draft to published`             |
+| **Negative / error** | `should [show error outcome] for [trigger]` | `LoginForm should show validation error for empty password`     |
+| **Boundary**         | `should [verb] [noun] at [boundary]`        | `TitleField should truncate at 255 characters`                  |
+| **Visual / CSS**     | `should [appear state] when [condition]`    | `SubmitButton should appear greyed out when form is incomplete` |
+| **Async / timing**   | `should [outcome] after [event]`            | `SearchResults should display updated list after submission`    |
+
+---
+
+## Comparison Table
+
+| Avoid (vague / action-oriented)          | Prefer (specific / outcome-oriented)                        |
+| ---------------------------------------- | ----------------------------------------------------------- |
+| `'should work properly'`                 | `'should display title matching fixture data'`              |
+| `'should handle new features correctly'` | `'should show error toast for input exceeding 500 chars'`   |
+| `'test calendar selection'`              | `'should disable dates before today'`                       |
+| `'should login successfully'`            | `'should navigate to /home after valid credentials entry'`  |
+| `'check visual regression'`              | `'should match baseline snapshot for dark mode'`            |
+| `'test error handling'`                  | `'should display 404 page for nonexistent route'`           |
+| `'should handle edge cases'`             | `'should display fallback image when avatar fails to load'` |
+| `'should validate form'`                 | `'should show inline error when email lacks @ symbol'`      |
+
+---
+
+## Compliance Checklist
+
+- [ ] **Outcome focused:** Does the name state what the user sees on screen?
+- [ ] **Starts with "should":** Does every `test()` name begin with `should`?
+- [ ] **Describe is a noun:** Is the `test.describe` a subject (page, component, flow), not an action?
+- [ ] **Natural English:** Is the `test.describe` written as a readable phrase with spaces, not a PascalCase code identifier?
+- [ ] **Reads as English:** Does `describe + test` form a natural sentence?
+- [ ] **No banned words as sole descriptors:** Are vague words like "properly," "correctly," "handles," or "works" either absent or paired with a specific noun?
+- [ ] **Present tense:** Does it use "open" instead of "opened" or "opening"?
+- [ ] **Uniqueness:** Is the full path name unique within the suite?
+- [ ] **Context in `test.describe`:** Are preconditions in a nested `test.describe` rather than repeated in every `test`?
+- [ ] **Under 120 characters:** Will the full concatenated path fit in a single line of terminal output?
+- [ ] **Grounded in implementation:** Do `describe` subjects and `test` nouns match actual component names, feature names, and UI labels from the source code?
+- [ ] **Uses team abbreviations:** Are established team abbreviations (BTTP, GMB, YT, etc.) used instead of their expanded forms?
+
+---
+
+## Full Examples
+
+```typescript
+// ✅ Good: Subject + should + outcome reads as natural English
+// Path: Composer should open when pressing the "C" key
+test.describe('Composer', () => {
+  test('should open when pressing the "C" key', async ({ page }) => { ... });
+  test('should save draft after 3 seconds of inactivity', async ({ page }) => { ... });
+  test('should show character count below text area', async ({ page }) => { ... });
+});
+
+// ✅ Good: Nested describe adds precondition context
+// Path: CartPage > when cart has items > should update total price when quantity is incremented
+test.describe('CartPage', () => {
+  test.describe('when cart has items', () => {
+    test('should update total price when quantity is incremented', async ({ page }) => { ... });
+    test('should remove line item on delete button click', async ({ page }) => { ... });
+  });
+
+  test.describe('when cart is empty', () => {
+    test('should disable checkout button', async ({ page }) => { ... });
+    test('should display "No items in your cart" message', async ({ page }) => { ... });
+  });
+});
+```
