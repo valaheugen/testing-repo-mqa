@@ -31,14 +31,19 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    testIdAttribute: 'data-testid',
   },
-
+ 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+  {
+    name: 'chromium',
+    use: {
+      browserName: 'chromium',
+      channel: 'chrome',
+      headless: false,
     },
+  },
 
     // {
     //   name: 'firefox',
