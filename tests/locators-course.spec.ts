@@ -20,5 +20,27 @@ test.describe('Form Layouts page', () => {
   await expect(blockFormCard.getByLabel('Website')).toHaveValue('https://ada.dev');
 });
 
-
+//ex2.
+test('filter card which has textarea', async ({ page }) => {
+  const targetCard = page.locator("nb-card").filter({ 
+    has: page.locator('textarea') 
   });
+  await expect(targetCard).toHaveCount(1);
+  await expect(targetCard.locator('nb-card-header')).toHaveText("Form without labels");
+});
+
+//ex.3
+test('multiple email inputs', async ({page}) =>{
+  const emailInputs = page.locator("input[type=\"email\"]");
+  await expect(emailInputs).toHaveCount(4);
+
+  const firstEmailInput = emailInputs.first();
+  await firstEmailInput.fill('first@email.com');
+  await expect(firstEmailInput).toHaveValue('first@email.com');
+
+  const lastEmailInput = emailInputs.last();
+  await lastEmailInput.fill('last@email.com');
+  await expect(lastEmailInput).toHaveValue('last@email.com');
+
+})
+});
