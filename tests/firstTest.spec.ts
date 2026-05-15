@@ -12,6 +12,8 @@ test.describe('Form Layouts page', () => {
       .locator('nb-card', { hasText: 'Using the Grid' })
       .getByRole('textbox', { name: 'Email' });
 
+    const basicSubmit = page.getByTestId('basic-form-submit');
+
     await usingTheGridEmailInput.fill('test@test.com');
     await usingTheGridEmailInput.clear();
     await usingTheGridEmailInput.pressSequentially('test2@test.com', { delay: 100 });
