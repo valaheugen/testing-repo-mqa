@@ -9,6 +9,8 @@ import { expect, test as base } from 'playwright/test';
 import { ApplicationURLs } from '../support/components/main/applicationURLs';
 import { WindowPageComponent } from '../support/components/modalOverlays/WindowPageComponent';
 import { WindowModalComponent } from '../support/components/modalOverlays/WindowModalComponent';
+import { DialogPageComponent } from '../support/components/modalOverlays/DialogPageComponent';
+import { DialogModalComponent } from '../support/components/modalOverlays/DialogModalComponent';
 
 type MyFixtures = {
   onBasicForm: BasicFormComponent;
@@ -20,6 +22,8 @@ type MyFixtures = {
   onApplicationURLs: ApplicationURLs;
   onWindowPage: WindowPageComponent;
   onWindowModal: WindowModalComponent;
+  onDialogPage: DialogPageComponent;
+  onDialogModal: DialogModalComponent;
 };
 
 const createFixture = <T>(Component: new (page: Page) => T) => {
@@ -38,6 +42,8 @@ export const test = base.extend<MyFixtures>({
   onApplicationURLs: [createFixture(ApplicationURLs), { scope: 'test' }],
   onWindowPage: [createFixture(WindowPageComponent), { scope: 'test' }],
   onWindowModal: [createFixture(WindowModalComponent), { scope: 'test' }],
+  onDialogPage: [createFixture(DialogPageComponent), { scope: 'test' }],
+  onDialogModal: [createFixture(DialogModalComponent), { scope: 'test' }],
 });
 
 export { expect };

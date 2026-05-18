@@ -1,6 +1,7 @@
 import { Page } from 'playwright';
 import { BasicFormComponent } from '../forms/BasicFormComponent';
 import { WindowPageComponent } from '../modalOverlays/WindowPageComponent';
+import { DialogPageComponent } from '../modalOverlays/DialogPageComponent';
 
 export class ApplicationURLs {
   readonly page: Page;
@@ -21,5 +22,12 @@ export class ApplicationURLs {
 
     const windowPage = new WindowPageComponent(this.page);
     await windowPage.assertVisibility(true);
+  }
+
+  async navigateToDialogPage() {
+    await this.page.goto('/pages/modal-overlays/dialog', { waitUntil: 'domcontentloaded' });
+
+    const dialogPage = new DialogPageComponent(this.page);
+    await dialogPage.assertVisibility(true);
   }
 }
