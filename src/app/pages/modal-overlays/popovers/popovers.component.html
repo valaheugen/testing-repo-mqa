@@ -1,25 +1,25 @@
 <div class="row">
   <div class="col-lg-6">
-    <nb-card size="small">
+    <nb-card size="small" data-testid="popover-position-card">
       <nb-card-header>Popover Position</nb-card-header>
       <nb-card-body>
         <p>When popover has not enough space based on the configured placement, it will adjust accordingly trying to fit the screen.</p>
-        <button nbButton status="danger" nbPopover="Hello, how are you today?" nbPopoverTrigger="hint" nbPopoverPlacement="left">Left</button>
-        <button nbButton status="danger" nbPopover="Hello, how are you today?" nbPopoverTrigger="hint" nbPopoverPlacement="top">Top</button>
-        <button nbButton status="danger" nbPopover="Hello, how are you today?" nbPopoverTrigger="hint" nbPopoverPlacement="bottom">Bottom</button>
-        <button nbButton status="danger" nbPopover="Hello, how are you today?" nbPopoverTrigger="hint" nbPopoverPlacement="right">Right</button>
+        <button nbButton status="danger" nbPopover="Hello, how are you today?" nbPopoverTrigger="hint" nbPopoverPlacement="left" data-testid="popover-left-btn">Left</button>
+        <button nbButton status="danger" nbPopover="Hello, how are you today?" nbPopoverTrigger="hint" nbPopoverPlacement="top" data-testid="popover-top-btn">Top</button>
+        <button nbButton status="danger" nbPopover="Hello, how are you today?" nbPopoverTrigger="hint" nbPopoverPlacement="bottom" data-testid="popover-bottom-btn">Bottom</button>
+        <button nbButton status="danger" nbPopover="Hello, how are you today?" nbPopoverTrigger="hint" nbPopoverPlacement="right" data-testid="popover-right-btn">Right</button>
       </nb-card-body>
     </nb-card>
   </div>
 
   <div class="col-lg-6">
-    <nb-card size="small">
+    <nb-card size="small" data-testid="popover-simple-card">
       <nb-card-header>Simple Popovers</nb-card-header>
       <nb-card-body>
         <p>In a simples form popover can take a string of text to render.</p>
-        <button nbButton status="success" nbPopover="Hello, how are you today?">on click</button>
-        <button nbButton status="success" nbPopover="Hello, how are you today?" nbPopoverTrigger="hover">on hover</button>
-        <button nbButton status="success" nbPopover="Hello, how are you today?" nbPopoverTrigger="hint">on hint</button>
+        <button nbButton status="success" nbPopover="Hello, how are you today?" data-testid="popover-on-click-btn">on click</button>
+        <button nbButton status="success" nbPopover="Hello, how are you today?" nbPopoverTrigger="hover" data-testid="popover-on-hover-btn">on hover</button>
+        <button nbButton status="success" nbPopover="Hello, how are you today?" nbPopoverTrigger="hint" data-testid="popover-on-hint-btn">on hint</button>
       </nb-card-body>
     </nb-card>
   </div>
@@ -29,7 +29,7 @@
   <div class="col-lg-6">
 
     <ng-template #tabs>
-      <nb-tabset>
+      <nb-tabset data-testid="popover-tabs-content">
         <nb-tab tabTitle="What's up?">
           <div class="p-4">
             Such a wonderful day!
@@ -45,7 +45,7 @@
 
     <ng-template #form>
       <div class="p-4">
-        <form>
+        <form data-testid="popover-form-content">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Recipients">
           </div>
@@ -61,7 +61,7 @@
     </ng-template>
 
     <ng-template #card>
-      <nb-card class="popover-card">
+      <nb-card class="popover-card" data-testid="popover-card-content">
         <nb-card-header status="warning">
           Hello!
         </nb-card-header>
@@ -72,25 +72,25 @@
       </nb-card>
     </ng-template>
 
-    <nb-card size="small">
+    <nb-card size="small" data-testid="popover-template-card">
       <nb-card-header>Template Popovers</nb-card-header>
       <nb-card-body>
         <p>You can pass a refference to `ng-template` to be rendered.</p>
-        <button nbButton status="warning" [nbPopover]="tabs">With tabs</button>
-        <button nbButton status="warning" [nbPopover]="form">With form</button>
-        <button nbButton status="warning" [nbPopover]="card">With card</button>
+        <button nbButton status="warning" [nbPopover]="tabs" data-testid="popover-tabs-btn">With tabs</button>
+        <button nbButton status="warning" [nbPopover]="form" data-testid="popover-form-btn">With form</button>
+        <button nbButton status="warning" [nbPopover]="card" data-testid="popover-card-btn">With card</button>
       </nb-card-body>
     </nb-card>
   </div>
 
   <div class="col-lg-6">
-    <nb-card size="small">
+    <nb-card size="small" data-testid="popover-component-card">
       <nb-card-header>Component Popovers</nb-card-header>
       <nb-card-body>
         <p>Same way popover can render any angular compnoent.</p>
-        <button nbButton status="warning" [nbPopover]="tabsComponent">With tabs</button>
-        <button nbButton status="warning" [nbPopover]="formComponent">With form</button>
-        <button nbButton status="warning" [nbPopover]="cardComponent">With card</button>
+        <button nbButton status="warning" [nbPopover]="tabsComponent" data-testid="popover-tabs-component-btn">With tabs</button>
+        <button nbButton status="warning" [nbPopover]="formComponent" data-testid="popover-form-component-btn">With form</button>
+        <button nbButton status="warning" [nbPopover]="cardComponent" data-testid="popover-card-component-btn">With card</button>
       </nb-card-body>
     </nb-card>
   </div>
@@ -98,7 +98,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <nb-card>
+    <nb-card data-testid="popover-debouncing-card">
       <nb-card-header>Event Debouncing</nb-card-header>
       <nb-card-body class="debounce-card">
         <p>Quickly move mouse cursor over the buttons, only the last popover will be created. It allows us to avoid excess white improving page performance.</p>

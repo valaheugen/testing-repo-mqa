@@ -2,6 +2,7 @@ import { Page } from 'playwright';
 import { BasicFormComponent } from '../forms/BasicFormComponent';
 import { WindowPageComponent } from '../modalOverlays/WindowPageComponent';
 import { DialogPageComponent } from '../modalOverlays/DialogPageComponent';
+import { PopoverPageComponent } from '../modalOverlays/PopoverPageComponent';
 
 export class ApplicationURLs {
   readonly page: Page;
@@ -29,5 +30,12 @@ export class ApplicationURLs {
 
     const dialogPage = new DialogPageComponent(this.page);
     await dialogPage.assertVisibility(true);
+  }
+
+  async navigateToPopoverPage() {
+    await this.page.goto('/pages/modal-overlays/popover', { waitUntil: 'domcontentloaded' });
+
+    const popoverPage = new PopoverPageComponent(this.page);
+    await popoverPage.assertVisibility(true);
   }
 }

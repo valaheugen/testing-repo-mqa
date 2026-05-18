@@ -11,6 +11,8 @@ import { WindowPageComponent } from '../support/components/modalOverlays/WindowP
 import { WindowModalComponent } from '../support/components/modalOverlays/WindowModalComponent';
 import { DialogPageComponent } from '../support/components/modalOverlays/DialogPageComponent';
 import { DialogModalComponent } from '../support/components/modalOverlays/DialogModalComponent';
+import { PopoverPageComponent } from '../support/components/modalOverlays/PopoverPageComponent';
+import { PopoverContentComponent } from '../support/components/modalOverlays/PopoverContentComponent';
 
 type MyFixtures = {
   onBasicForm: BasicFormComponent;
@@ -24,6 +26,8 @@ type MyFixtures = {
   onWindowModal: WindowModalComponent;
   onDialogPage: DialogPageComponent;
   onDialogModal: DialogModalComponent;
+  onPopoverPage: PopoverPageComponent;
+  onPopoverContent: PopoverContentComponent;
 };
 
 const createFixture = <T>(Component: new (page: Page) => T) => {
@@ -44,6 +48,8 @@ export const test = base.extend<MyFixtures>({
   onWindowModal: [createFixture(WindowModalComponent), { scope: 'test' }],
   onDialogPage: [createFixture(DialogPageComponent), { scope: 'test' }],
   onDialogModal: [createFixture(DialogModalComponent), { scope: 'test' }],
+  onPopoverPage: [createFixture(PopoverPageComponent), { scope: 'test' }],
+  onPopoverContent: [createFixture(PopoverContentComponent), { scope: 'test' }],
 });
 
 export { expect };
