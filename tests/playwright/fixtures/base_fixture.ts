@@ -7,6 +7,7 @@ import { BlockFormComponent } from '../support/components/forms/BlockFormCompone
 import { HorizontalFormComponent } from '../support/components/forms/HorizontalFormComponent';
 import { expect, test as base } from 'playwright/test';
 import { ApplicationURLs } from '../support/components/main/applicationURLs';
+import { HeaderComponent } from '../support/components/main/HeaderComponent';
 import { WindowPageComponent } from '../support/components/modalOverlays/WindowPageComponent';
 import { WindowModalComponent } from '../support/components/modalOverlays/WindowModalComponent';
 import { DialogPageComponent } from '../support/components/modalOverlays/DialogPageComponent';
@@ -37,6 +38,7 @@ type MyFixtures = {
   onBlockForm: BlockFormComponent;
   onHorizontalForm: HorizontalFormComponent;
   onApplicationURLs: ApplicationURLs;
+  onHeader: HeaderComponent;
   onWindowPage: WindowPageComponent;
   onWindowModal: WindowModalComponent;
   onDialogPage: DialogPageComponent;
@@ -74,6 +76,7 @@ export const test = base.extend<MyFixtures>({
   onBlockForm: [createFixture(BlockFormComponent), { scope: 'test' }],
   onHorizontalForm: [createFixture(HorizontalFormComponent), { scope: 'test' }],
   onApplicationURLs: [createFixture(ApplicationURLs), { scope: 'test' }],
+  onHeader: [createFixture(HeaderComponent), { scope: 'test' }],
   onWindowPage: [createFixture(WindowPageComponent), { scope: 'test' }],
   onWindowModal: [createFixture(WindowModalComponent), { scope: 'test' }],
   onDialogPage: [createFixture(DialogPageComponent), { scope: 'test' }],
