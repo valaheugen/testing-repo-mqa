@@ -26,9 +26,11 @@ export class EchartsPageComponent {
 
   constructor(page: Page) {
     this.page = page;
-    this.cards = Object.fromEntries(
-      Object.entries(TESTIDS).map(([key, testid]) => [key, page.getByTestId(testid)]),
-    ) as Record<EchartsCard, Locator>;
+    const cards = {} as Record<EchartsCard, Locator>;
+    for (const key of Object.keys(TESTIDS) as EchartsCard[]) {
+      cards[key] = page.getByTestId(TESTIDS[key]);
+    }
+    this.cards = cards;
   }
 
   async assertVisibility(visible = true) {

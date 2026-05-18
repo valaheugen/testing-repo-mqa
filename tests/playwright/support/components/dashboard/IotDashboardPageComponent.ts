@@ -32,9 +32,11 @@ export class IotDashboardPageComponent {
 
   constructor(page: Page) {
     this.page = page;
-    this.widgets = Object.fromEntries(
-      Object.entries(TESTIDS).map(([key, testid]) => [key, page.getByTestId(testid)]),
-    ) as Record<IotDashboardWidget, Locator>;
+    const widgets = {} as Record<IotDashboardWidget, Locator>;
+    for (const key of Object.keys(TESTIDS) as IotDashboardWidget[]) {
+      widgets[key] = page.getByTestId(TESTIDS[key]);
+    }
+    this.widgets = widgets;
   }
 
   async assertVisibility(visible = true) {
