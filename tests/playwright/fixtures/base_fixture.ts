@@ -22,6 +22,8 @@ import { TreeGridPageComponent } from '../support/components/tables/TreeGridPage
 import { DatepickerPageComponent } from '../support/components/forms/DatepickerPageComponent';
 import { DatepickerOverlayComponent } from '../support/components/forms/DatepickerOverlayComponent';
 import { CalendarPageComponent } from '../support/components/extraComponents/CalendarPageComponent';
+import { EchartsPageComponent } from '../support/components/charts/EchartsPageComponent';
+import { IotDashboardPageComponent } from '../support/components/dashboard/IotDashboardPageComponent';
 
 type MyFixtures = {
   onBasicForm: BasicFormComponent;
@@ -46,6 +48,8 @@ type MyFixtures = {
   onDatepickerPage: DatepickerPageComponent;
   onDatepickerOverlay: DatepickerOverlayComponent;
   onCalendarPage: CalendarPageComponent;
+  onEchartsPage: EchartsPageComponent;
+  onIotDashboardPage: IotDashboardPageComponent;
 };
 
 const createFixture = <T>(Component: new (page: Page) => T) => {
@@ -77,6 +81,8 @@ export const test = base.extend<MyFixtures>({
   onDatepickerPage: [createFixture(DatepickerPageComponent), { scope: 'test' }],
   onDatepickerOverlay: [createFixture(DatepickerOverlayComponent), { scope: 'test' }],
   onCalendarPage: [createFixture(CalendarPageComponent), { scope: 'test' }],
+  onEchartsPage: [createFixture(EchartsPageComponent), { scope: 'test' }],
+  onIotDashboardPage: [createFixture(IotDashboardPageComponent), { scope: 'test' }],
 });
 
 export { expect };

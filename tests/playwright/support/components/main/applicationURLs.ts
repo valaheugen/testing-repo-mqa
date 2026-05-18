@@ -9,6 +9,8 @@ import { SmartTablePageComponent } from '../tables/SmartTablePageComponent';
 import { TreeGridPageComponent } from '../tables/TreeGridPageComponent';
 import { DatepickerPageComponent } from '../forms/DatepickerPageComponent';
 import { CalendarPageComponent } from '../extraComponents/CalendarPageComponent';
+import { EchartsPageComponent } from '../charts/EchartsPageComponent';
+import { IotDashboardPageComponent } from '../dashboard/IotDashboardPageComponent';
 
 export class ApplicationURLs {
   readonly page: Page;
@@ -85,5 +87,19 @@ export class ApplicationURLs {
 
     const calendarPage = new CalendarPageComponent(this.page);
     await calendarPage.assertVisibility(true);
+  }
+
+  async navigateToEchartsPage() {
+    await this.page.goto('/pages/charts/echarts', { waitUntil: 'domcontentloaded' });
+
+    const echartsPage = new EchartsPageComponent(this.page);
+    await echartsPage.assertVisibility(true);
+  }
+
+  async navigateToIotDashboardPage() {
+    await this.page.goto('/pages/iot-dashboard', { waitUntil: 'domcontentloaded' });
+
+    const dashboardPage = new IotDashboardPageComponent(this.page);
+    await dashboardPage.assertVisibility(true);
   }
 }
