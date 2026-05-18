@@ -13,6 +13,8 @@ import { DialogPageComponent } from '../support/components/modalOverlays/DialogP
 import { DialogModalComponent } from '../support/components/modalOverlays/DialogModalComponent';
 import { PopoverPageComponent } from '../support/components/modalOverlays/PopoverPageComponent';
 import { PopoverContentComponent } from '../support/components/modalOverlays/PopoverContentComponent';
+import { TooltipPageComponent } from '../support/components/modalOverlays/TooltipPageComponent';
+import { TooltipContentComponent } from '../support/components/modalOverlays/TooltipContentComponent';
 
 type MyFixtures = {
   onBasicForm: BasicFormComponent;
@@ -28,6 +30,8 @@ type MyFixtures = {
   onDialogModal: DialogModalComponent;
   onPopoverPage: PopoverPageComponent;
   onPopoverContent: PopoverContentComponent;
+  onTooltipPage: TooltipPageComponent;
+  onTooltipContent: TooltipContentComponent;
 };
 
 const createFixture = <T>(Component: new (page: Page) => T) => {
@@ -50,6 +54,8 @@ export const test = base.extend<MyFixtures>({
   onDialogModal: [createFixture(DialogModalComponent), { scope: 'test' }],
   onPopoverPage: [createFixture(PopoverPageComponent), { scope: 'test' }],
   onPopoverContent: [createFixture(PopoverContentComponent), { scope: 'test' }],
+  onTooltipPage: [createFixture(TooltipPageComponent), { scope: 'test' }],
+  onTooltipContent: [createFixture(TooltipContentComponent), { scope: 'test' }],
 });
 
 export { expect };

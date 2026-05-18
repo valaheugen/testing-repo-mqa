@@ -3,6 +3,7 @@ import { BasicFormComponent } from '../forms/BasicFormComponent';
 import { WindowPageComponent } from '../modalOverlays/WindowPageComponent';
 import { DialogPageComponent } from '../modalOverlays/DialogPageComponent';
 import { PopoverPageComponent } from '../modalOverlays/PopoverPageComponent';
+import { TooltipPageComponent } from '../modalOverlays/TooltipPageComponent';
 
 export class ApplicationURLs {
   readonly page: Page;
@@ -37,5 +38,12 @@ export class ApplicationURLs {
 
     const popoverPage = new PopoverPageComponent(this.page);
     await popoverPage.assertVisibility(true);
+  }
+
+  async navigateToTooltipPage() {
+    await this.page.goto('/pages/modal-overlays/tooltip', { waitUntil: 'domcontentloaded' });
+
+    const tooltipPage = new TooltipPageComponent(this.page);
+    await tooltipPage.assertVisibility(true);
   }
 }
