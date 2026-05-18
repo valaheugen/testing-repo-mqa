@@ -1,30 +1,31 @@
 <div class="row">
   <div class="col-md-12 col-lg-4 col-xxxl-4">
-    <nb-card>
+    <nb-card data-testid="common-datepicker-card">
       <nb-card-header>Common Datepicker</nb-card-header>
       <nb-card-body>
         <input nbInput
                placeholder="Form Picker"
-               [nbDatepicker]="formpicker">
+               [nbDatepicker]="formpicker"
+               data-testid="common-datepicker-input">
         <nb-datepicker #formpicker></nb-datepicker>
       </nb-card-body>
     </nb-card>
   </div>
 
   <div class="col-md-12 col-lg-4 col-xxxl-4">
-    <nb-card>
+    <nb-card data-testid="range-datepicker-card">
       <nb-card-header>Datepicker With Range</nb-card-header>
       <nb-card-body>
-        <input nbInput placeholder="Range Picker" [nbDatepicker]="rangepicker">
+        <input nbInput placeholder="Range Picker" [nbDatepicker]="rangepicker" data-testid="range-datepicker-input">
         <nb-rangepicker #rangepicker></nb-rangepicker>
       </nb-card-body>
     </nb-card>
   </div>
   <div class="col-md-12 col-lg-4 col-xxxl-4">
-    <nb-card>
+    <nb-card data-testid="min-max-datepicker-card">
       <nb-card-header>Datepicker With Disabled Min Max Values</nb-card-header>
       <nb-card-body>
-        <input nbInput placeholder="Min Max Picker" [nbDatepicker]="picker">
+        <input nbInput placeholder="Min Max Picker" [nbDatepicker]="picker" data-testid="min-max-datepicker-input">
         <nb-datepicker #picker [min]="min" [max]="max"></nb-datepicker>
       </nb-card-body>
     </nb-card>

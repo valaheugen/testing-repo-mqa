@@ -1,18 +1,18 @@
 <div class="calendars">
-  <div class="calendar-container">
-    <span class="subtitle">
+  <div class="calendar-container" data-testid="single-date-calendar-container">
+    <span class="subtitle" data-testid="single-date-subtitle">
       Selected date: {{ date | date }}
     </span>
     <nb-calendar [(date)]="date" [boundingMonth]="true" showWeekNumber></nb-calendar>
   </div>
-  <div class="calendar-container">
-    <span class="subtitle">
+  <div class="calendar-container" data-testid="range-calendar-container">
+    <span class="subtitle" data-testid="range-subtitle">
       Selected range: {{ range.start | date }} - {{ range.end | date }}
     </span>
     <nb-calendar-range [(range)]="range"></nb-calendar-range>
   </div>
-  <div class="calendar-container">
-    <span class="subtitle">
+  <div class="calendar-container" data-testid="custom-cell-calendar-container">
+    <span class="subtitle" data-testid="custom-cell-subtitle">
       Selected date: {{ date2 | date }}
     </span>
     <nb-calendar

@@ -7,6 +7,8 @@ import { TooltipPageComponent } from '../modalOverlays/TooltipPageComponent';
 import { ToastrPageComponent } from '../modalOverlays/ToastrPageComponent';
 import { SmartTablePageComponent } from '../tables/SmartTablePageComponent';
 import { TreeGridPageComponent } from '../tables/TreeGridPageComponent';
+import { DatepickerPageComponent } from '../forms/DatepickerPageComponent';
+import { CalendarPageComponent } from '../extraComponents/CalendarPageComponent';
 
 export class ApplicationURLs {
   readonly page: Page;
@@ -69,5 +71,19 @@ export class ApplicationURLs {
 
     const treeGridPage = new TreeGridPageComponent(this.page);
     await treeGridPage.assertVisibility(true);
+  }
+
+  async navigateToDatepickerPage() {
+    await this.page.goto('/pages/forms/datepicker', { waitUntil: 'domcontentloaded' });
+
+    const datepickerPage = new DatepickerPageComponent(this.page);
+    await datepickerPage.assertVisibility(true);
+  }
+
+  async navigateToCalendarPage() {
+    await this.page.goto('/pages/extra-components/calendar', { waitUntil: 'domcontentloaded' });
+
+    const calendarPage = new CalendarPageComponent(this.page);
+    await calendarPage.assertVisibility(true);
   }
 }

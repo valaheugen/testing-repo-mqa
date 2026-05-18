@@ -19,6 +19,9 @@ import { ToastrPageComponent } from '../support/components/modalOverlays/ToastrP
 import { ToastComponent } from '../support/components/modalOverlays/ToastComponent';
 import { SmartTablePageComponent } from '../support/components/tables/SmartTablePageComponent';
 import { TreeGridPageComponent } from '../support/components/tables/TreeGridPageComponent';
+import { DatepickerPageComponent } from '../support/components/forms/DatepickerPageComponent';
+import { DatepickerOverlayComponent } from '../support/components/forms/DatepickerOverlayComponent';
+import { CalendarPageComponent } from '../support/components/extraComponents/CalendarPageComponent';
 
 type MyFixtures = {
   onBasicForm: BasicFormComponent;
@@ -40,6 +43,9 @@ type MyFixtures = {
   onToast: ToastComponent;
   onSmartTablePage: SmartTablePageComponent;
   onTreeGridPage: TreeGridPageComponent;
+  onDatepickerPage: DatepickerPageComponent;
+  onDatepickerOverlay: DatepickerOverlayComponent;
+  onCalendarPage: CalendarPageComponent;
 };
 
 const createFixture = <T>(Component: new (page: Page) => T) => {
@@ -68,6 +74,9 @@ export const test = base.extend<MyFixtures>({
   onToast: [createFixture(ToastComponent), { scope: 'test' }],
   onSmartTablePage: [createFixture(SmartTablePageComponent), { scope: 'test' }],
   onTreeGridPage: [createFixture(TreeGridPageComponent), { scope: 'test' }],
+  onDatepickerPage: [createFixture(DatepickerPageComponent), { scope: 'test' }],
+  onDatepickerOverlay: [createFixture(DatepickerOverlayComponent), { scope: 'test' }],
+  onCalendarPage: [createFixture(CalendarPageComponent), { scope: 'test' }],
 });
 
 export { expect };
