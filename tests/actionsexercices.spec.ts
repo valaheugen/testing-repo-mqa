@@ -1,19 +1,19 @@
 import test, { expect } from 'playwright/test';
 test.describe('Form Layouts page', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('http://localhost:4200/');
+      await page.goto('/');
       await page.getByText('Forms').click();
       await page.getByText('Form Layouts').click();
     });
 
     test('pressSequentially + keyboard + getAttribute', async ({ page }) => {
-      // Definirea corectă a variabilei folosind getByRole
       const emailInput = page
         .locator('nb-card', { hasText: 'Basic form' })
         .getByRole('textbox', { name: 'Email' });
           
       await emailInput.pressSequentially('john@test.com', { delay: 50 });
       await emailInput.press('Tab');
+      await expect(emailInput).not.toBeFocused();
   
       const typeAttribute = await emailInput.getAttribute('type');
       expect(typeAttribute).toBe('email');
@@ -44,35 +44,34 @@ test.describe('Form Layouts page', () => {
       await expect(disabledRadio).not.toBeChecked(); 
       await expect(disabledRadio).toBeDisabled();     
     });
+
     test('Multi-checkbox flip with setChecked', async ({ page }) => {
       const checkboxes = [
         page.locator('nb-card', { hasText: 'Inline form' }).getByRole('checkbox', { name: 'Remember me' }),
         page.locator('nb-card', { hasText: 'Basic Form' }).getByRole('checkbox', { name: 'Check me out' }),
         page.locator('nb-card', { hasText: 'Horizontal form' }).getByRole('checkbox', { name: 'Remember me' })
       ];
-  
+    
       for (const checkbox of checkboxes) {
         await checkbox.setChecked(true, { force: true });
-        await expect(checkbox).toBeChecked({ timeout: 10000 });
+        await expect(checkbox).toBeChecked();
       }
-
+    
       await checkboxes[1].setChecked(false, { force: true });
       
-      await expect(checkboxes[0]).toBeChecked({ timeout: 10000 });
-      await expect(checkboxes[1]).not.toBeChecked({ timeout: 10000 });
-      await expect(checkboxes[2]).toBeChecked({ timeout: 10000 });
-
-        for (const checkbox of checkboxes) {
-        const isCurrentlyChecked = await checkbox.isChecked(); 
-       
+      await expect(checkboxes[0]).toBeChecked();
+      await expect(checkboxes[1]).not.toBeChecked();
+      await expect(checkboxes[2]).toBeChecked();
+    
+      for (const checkbox of checkboxes) {
         await checkbox.dispatchEvent('click');
-        await page.waitForTimeout(200); 
       }
-        await expect(checkboxes[0]).not.toBeChecked({ timeout: 10000 });
-      await expect(checkboxes[1]).toBeChecked({ timeout: 10000 });
-      await expect(checkboxes[2]).not.toBeChecked({ timeout: 10000 });
-  });
-});
+    
+      await expect(checkboxes[0]).not.toBeChecked();
+      await expect(checkboxes[1]).toBeChecked();
+      await expect(checkboxes[2]).not.toBeChecked();
+    });
+
 test.describe('Window page', () => {
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
@@ -102,6 +101,7 @@ test.describe('Window page', () => {
 
     await expect(windowContainer).not.toBeVisible();
   });
+});
 
   test('Interacțiune cu Open Window with template', async ({ page }) => {
     const openTemplateButton = page.getByRole('button', { name: 'Open Window with template' });
@@ -117,4 +117,4 @@ test.describe('Window page', () => {
 
     await expect(windowContainer).not.toBeVisible();
   });
-});
+}); 
