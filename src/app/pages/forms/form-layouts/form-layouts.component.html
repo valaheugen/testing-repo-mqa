@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-md-12">
-    <nb-card class="inline-form-card">
+    <nb-card data-testid="inline-form-card">
       <nb-card-header>Inline form</nb-card-header>
       <nb-card-body>
         <form class="form-inline">
-          <input type="text" nbInput fullWidth placeholder="Jane Doe" />
-          <input type="text" nbInput fullWidth placeholder="Email" />
-          <nb-checkbox>Remember me</nb-checkbox>
+          <input type="text" nbInput fullWidth placeholder="Jane Doe" data-testid="name-input" />
+          <input type="text" nbInput fullWidth placeholder="Email" data-testid="email-input" />
+          <nb-checkbox data-testid="remember-me-checkbox">Remember me</nb-checkbox>
           <button type="submit" nbButton status="primary" data-testid="submit-button">
             Submit
           </button>
@@ -69,18 +69,18 @@
       </nb-card-body>
     </nb-card>
 
-    <nb-card>
+    <nb-card data-testid="no-labels-form-card">
       <nb-card-header>Form without labels</nb-card-header>
       <nb-card-body>
         <form>
           <div class="form-group">
-            <input type="text" nbInput fullWidth placeholder="Recipients" />
+            <input type="text" nbInput fullWidth placeholder="Recipients" data-testid="recipients-input" />
           </div>
           <div class="form-group">
-            <input type="text" nbInput fullWidth placeholder="Subject" />
+            <input type="text" nbInput fullWidth placeholder="Subject" data-testid="subject-input" />
           </div>
           <div class="form-group">
-            <textarea nbInput placeholder="Message"></textarea>
+            <textarea nbInput placeholder="Message" data-testid="message-textarea"></textarea>
           </div>
           <button type="submit" nbButton status="success" data-testid="submit-button">Send</button>
         </form>
@@ -123,20 +123,20 @@
       </nb-card-body>
     </nb-card>
 
-    <nb-card>
+    <nb-card data-testid="block-form-card">
       <nb-card-header>Block form</nb-card-header>
       <nb-card-body>
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputFirstName" class="label">First Name</label>
-              <input type="text" nbInput fullWidth id="inputFirstName" placeholder="First Name" />
+              <input type="text" nbInput fullWidth id="inputFirstName" placeholder="First Name" data-testid="first-name-input" />
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputLastName" class="label">Last Name</label>
-              <input type="text" nbInput fullWidth id="inputLastName" placeholder="Last Name" />
+              <input type="text" nbInput fullWidth id="inputLastName" placeholder="Last Name" data-testid="last-name-input" />
             </div>
           </div>
         </div>
@@ -144,13 +144,13 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputEmail" class="label">Email</label>
-              <input type="email" nbInput fullWidth id="inputEmail" placeholder="Email" />
+              <input type="email" nbInput fullWidth id="inputEmail" placeholder="Email" data-testid="email-input" />
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputWebsite" class="label">Website</label>
-              <input type="text" nbInput fullWidth id="inputWebsite" placeholder="Website" />
+              <input type="text" nbInput fullWidth id="inputWebsite" placeholder="Website" data-testid="website-input" />
             </div>
           </div>
         </div>
@@ -162,26 +162,26 @@
 
 <div class="row">
   <div class="col-md-6">
-    <nb-card>
+    <nb-card data-testid="horizontal-form-card">
       <nb-card-header>Horizontal form</nb-card-header>
       <nb-card-body>
         <form class="form-horizontal">
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Email</label>
             <div class="col-sm-9">
-              <input type="email" nbInput fullWidth id="inputEmail3" placeholder="Email" />
+              <input type="email" nbInput fullWidth id="inputEmail3" placeholder="Email" data-testid="email-input" />
             </div>
           </div>
           <div class="form-group row">
             <label for="inputPassword3" class="label col-sm-3 form-control-label">Password</label>
             <div class="col-sm-9">
-              <input type="password" nbInput fullWidth id="inputPassword3" placeholder="Password" />
+              <input type="password" nbInput fullWidth id="inputPassword3" placeholder="Password" data-testid="password-input" />
             </div>
           </div>
           <div class="form-group row">
             <div class="offset-sm-3 col-sm-9">
               <div class="checkbox">
-                <nb-checkbox>Remember me</nb-checkbox>
+                <nb-checkbox data-testid="remember-me-checkbox">Remember me</nb-checkbox>
               </div>
             </div>
           </div>

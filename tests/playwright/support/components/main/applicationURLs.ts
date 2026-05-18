@@ -1,6 +1,6 @@
 import { Page } from 'playwright';
-import { BaseFormComponent } from '../forms/BaseFormComponent';
 import { BasicFormComponent } from '../forms/BasicFormComponent';
+import { WindowPageComponent } from '../modalOverlays/WindowPageComponent';
 
 export class ApplicationURLs {
   readonly page: Page;
@@ -14,5 +14,12 @@ export class ApplicationURLs {
 
     const basicForm = new BasicFormComponent(this.page);
     await basicForm.assertVisibility(true);
+  }
+
+  async navigateToWindowPage() {
+    await this.page.goto('/pages/modal-overlays/window', { waitUntil: 'domcontentloaded' });
+
+    const windowPage = new WindowPageComponent(this.page);
+    await windowPage.assertVisibility(true);
   }
 }

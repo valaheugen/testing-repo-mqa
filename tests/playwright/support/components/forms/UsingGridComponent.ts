@@ -13,6 +13,7 @@ export class UsingGridComponent extends BaseFormComponent {
     super(page, 'grid-form-card');
     this.usingGridEmailInput = this.card.getByTestId('email-input');
     this.usingGridPasswordInput = this.card.getByTestId('password-input');
+
     this.getOptionRadio = (key) =>
       this.card.getByTestId(`${key}-radio`).locator('input[type="radio"]');
   }
@@ -27,6 +28,7 @@ export class UsingGridComponent extends BaseFormComponent {
 
   async selectOption(key: GridRadioOptions) {
     const radio = this.getOptionRadio(key);
+
     await expect(radio).not.toBeChecked();
     await radio.check({ force: true });
     await expect(radio).toBeChecked();
