@@ -4,6 +4,7 @@ import { WindowPageComponent } from '../modalOverlays/WindowPageComponent';
 import { DialogPageComponent } from '../modalOverlays/DialogPageComponent';
 import { PopoverPageComponent } from '../modalOverlays/PopoverPageComponent';
 import { TooltipPageComponent } from '../modalOverlays/TooltipPageComponent';
+import { ToastrPageComponent } from '../modalOverlays/ToastrPageComponent';
 
 export class ApplicationURLs {
   readonly page: Page;
@@ -45,5 +46,12 @@ export class ApplicationURLs {
 
     const tooltipPage = new TooltipPageComponent(this.page);
     await tooltipPage.assertVisibility(true);
+  }
+
+  async navigateToToastrPage() {
+    await this.page.goto('/pages/modal-overlays/toastr', { waitUntil: 'domcontentloaded' });
+
+    const toastrPage = new ToastrPageComponent(this.page);
+    await toastrPage.assertVisibility(true);
   }
 }

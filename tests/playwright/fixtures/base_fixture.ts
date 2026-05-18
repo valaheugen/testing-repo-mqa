@@ -15,6 +15,8 @@ import { PopoverPageComponent } from '../support/components/modalOverlays/Popove
 import { PopoverContentComponent } from '../support/components/modalOverlays/PopoverContentComponent';
 import { TooltipPageComponent } from '../support/components/modalOverlays/TooltipPageComponent';
 import { TooltipContentComponent } from '../support/components/modalOverlays/TooltipContentComponent';
+import { ToastrPageComponent } from '../support/components/modalOverlays/ToastrPageComponent';
+import { ToastComponent } from '../support/components/modalOverlays/ToastComponent';
 
 type MyFixtures = {
   onBasicForm: BasicFormComponent;
@@ -32,6 +34,8 @@ type MyFixtures = {
   onPopoverContent: PopoverContentComponent;
   onTooltipPage: TooltipPageComponent;
   onTooltipContent: TooltipContentComponent;
+  onToastrPage: ToastrPageComponent;
+  onToast: ToastComponent;
 };
 
 const createFixture = <T>(Component: new (page: Page) => T) => {
@@ -56,6 +60,8 @@ export const test = base.extend<MyFixtures>({
   onPopoverContent: [createFixture(PopoverContentComponent), { scope: 'test' }],
   onTooltipPage: [createFixture(TooltipPageComponent), { scope: 'test' }],
   onTooltipContent: [createFixture(TooltipContentComponent), { scope: 'test' }],
+  onToastrPage: [createFixture(ToastrPageComponent), { scope: 'test' }],
+  onToast: [createFixture(ToastComponent), { scope: 'test' }],
 });
 
 export { expect };

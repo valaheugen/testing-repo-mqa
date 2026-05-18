@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card data-testid="toastr-config-card">
   <nb-card-header>
     Toaster configuration
   </nb-card-header>
@@ -8,52 +8,52 @@
       <div class="col-md-6 col-sm-12">
         <div class="form-group">
           <label class="label">Position:</label>
-          <nb-select [(selected)]="position" class="position-select">
-            <nb-option *ngFor="let p of positions" [value]="p">{{ p }}</nb-option>
+          <nb-select [(selected)]="position" class="position-select" data-testid="toastr-position-select">
+            <nb-option *ngFor="let p of positions" [value]="p" attr.data-testid="position-option-{{ p }}">{{ p }}</nb-option>
           </nb-select>
         </div>
 
         <div class="form-group">
           <label class="label">Title:</label>
-          <input nbInput [(ngModel)]="title" name="title">
+          <input nbInput [(ngModel)]="title" name="title" data-testid="toastr-title-input">
         </div>
 
         <form>
           <div class="form-group">
             <label class="label">Content:</label>
-            <input nbInput [(ngModel)]="content" name="content">
+            <input nbInput [(ngModel)]="content" name="content" data-testid="toastr-content-input">
           </div>
         </form>
 
         <div class="form-group">
           <label class="label">Time to hide toast, ms. 0 to persistent toast:</label>
-          <input nbInput type="number" [(ngModel)]="duration" name="timeout">
+          <input nbInput type="number" [(ngModel)]="duration" name="timeout" data-testid="toastr-duration-input">
         </div>
       </div>
 
       <div class="col-md-6 col-sm-12">
         <div class="form-group">
           <label class="label">Toast type:</label>
-          <nb-select [(selected)]="status">
-            <nb-option *ngFor="let t of types" [value]="t">{{ t }}</nb-option>
+          <nb-select [(selected)]="status" data-testid="toastr-type-select">
+            <nb-option *ngFor="let t of types" [value]="t" attr.data-testid="type-option-{{ t }}">{{ t }}</nb-option>
           </nb-select>
         </div>
 
         <div>
-          <nb-checkbox [(ngModel)]="destroyByClick">Hide on click</nb-checkbox>
+          <nb-checkbox [(ngModel)]="destroyByClick" data-testid="hide-on-click-checkbox">Hide on click</nb-checkbox>
         </div>
         <div>
-          <nb-checkbox [(ngModel)]="preventDuplicates">Prevent arising of duplicate toast</nb-checkbox>
+          <nb-checkbox [(ngModel)]="preventDuplicates" data-testid="prevent-duplicates-checkbox">Prevent arising of duplicate toast</nb-checkbox>
         </div>
         <div>
-          <nb-checkbox [(ngModel)]="hasIcon">Show toast with icon</nb-checkbox>
+          <nb-checkbox [(ngModel)]="hasIcon" data-testid="has-icon-checkbox">Show toast with icon</nb-checkbox>
         </div>
       </div>
     </div>
   </nb-card-body>
 
   <nb-card-footer>
-    <button nbButton (click)="makeToast()">Show toast</button>
-    <button nbButton status="success" (click)="openRandomToast()">Random toast</button>
+    <button nbButton (click)="makeToast()" data-testid="show-toast-btn">Show toast</button>
+    <button nbButton status="success" (click)="openRandomToast()" data-testid="random-toast-btn">Random toast</button>
   </nb-card-footer>
 </nb-card>
