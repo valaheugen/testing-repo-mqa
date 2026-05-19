@@ -1,24 +1,24 @@
-<div class="header-container">
+<div class="header-container" data-testid="header-left">
   <div class="logo-container">
-    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle" data-testid="sidebar-toggle-btn">
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
-    <a class="logo" href="#" (click)="navigateHome()">PW-<span>test</span></a>
+    <a class="logo" href="#" (click)="navigateHome()" data-testid="header-logo">PW-<span>test</span></a>
   </div>
-  <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
-    <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
+  <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary" data-testid="theme-select">
+    <nb-option *ngFor="let theme of themes" [value]="theme.value" attr.data-testid="theme-option-{{ theme.value }}"> {{ theme.name }}</nb-option>
   </nb-select>
 </div>
 
-<div class="header-container">
+<div class="header-container" data-testid="header-right">
   <nb-actions size="small">
 
-    <nb-action class="control-item">
+    <nb-action class="control-item" data-testid="header-search-action">
       <nb-search type="rotate-layout"></nb-search>
     </nb-action>
-    <nb-action class="control-item" icon="email-outline"></nb-action>
-    <nb-action class="control-item" icon="bell-outline"></nb-action>
-    <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
+    <nb-action class="control-item" icon="email-outline" data-testid="header-email-action"></nb-action>
+    <nb-action class="control-item" icon="bell-outline" data-testid="header-bell-action"></nb-action>
+    <nb-action class="user-action" *nbIsGranted="['view', 'user']" data-testid="header-user-action">
       <nb-user [nbContextMenu]="userMenu"
                [onlyPicture]="userPictureOnly"
                [name]="user?.name"

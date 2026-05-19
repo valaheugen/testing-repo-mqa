@@ -1,57 +1,57 @@
 <div class="row">
   <div class="col-md-12 col-lg-6 col-xxxl-3">
-    <nb-card>
+    <nb-card data-testid="open-dialog-card">
       <nb-card-header>Open Dialog</nb-card-header>
       <nb-card-body>
-        <button nbButton (click)="open()">Open Dialog with component</button>
+        <button nbButton (click)="open()" data-testid="open-dialog-component-btn">Open Dialog with component</button>
 
-        <button nbButton (click)="open2(dialog)">Open Dialog with template</button>
+        <button nbButton (click)="open2(dialog)" data-testid="open-dialog-template-btn">Open Dialog with template</button>
       </nb-card-body>
     </nb-card>
   </div>
 
   <div class="col-md-12 col-lg-6 col-xxxl-3">
-    <nb-card>
+    <nb-card data-testid="open-without-backdrop-card">
       <nb-card-header>Open Without Backdrop</nb-card-header>
       <nb-card-body>
-        <button nbButton (click)="open()">Open Dialog with backdrop</button>
+        <button nbButton (click)="open()" data-testid="open-dialog-backdrop-btn">Open Dialog with backdrop</button>
 
-        <button nbButton (click)="openWithoutBackdrop(dialog)">Open Dialog without backdrop</button>
+        <button nbButton (click)="openWithoutBackdrop(dialog)" data-testid="open-dialog-no-backdrop-btn">Open Dialog without backdrop</button>
       </nb-card-body>
     </nb-card>
   </div>
 
   <div class="col-md-12 col-lg-6 col-xxxl-3">
-    <nb-card>
+    <nb-card data-testid="open-without-esc-close-card">
       <nb-card-header>Open Without Esc Close</nb-card-header>
       <nb-card-body>
-        <button nbButton (click)="open()">Open Dialog with esc close</button>
+        <button nbButton (click)="open()" data-testid="open-dialog-esc-btn">Open Dialog with esc close</button>
 
-        <button nbButton (click)="openWithoutEscClose(dialog)">Open Dialog without esc close</button>
+        <button nbButton (click)="openWithoutEscClose(dialog)" data-testid="open-dialog-no-esc-btn">Open Dialog without esc close</button>
       </nb-card-body>
     </nb-card>
   </div>
 
   <div class="col-md-12 col-lg-6 col-xxxl-3">
-    <nb-card>
+    <nb-card data-testid="open-without-backdrop-click-card">
       <nb-card-header>Open Without Backdrop Click</nb-card-header>
       <nb-card-body>
-        <button nbButton (click)="open()">Open Dialog with backdrop click</button>
+        <button nbButton (click)="open()" data-testid="open-dialog-backdrop-click-btn">Open Dialog with backdrop click</button>
 
-        <button nbButton (click)="openWithoutBackdropClick(dialog)">Open without backdrop click</button>
+        <button nbButton (click)="openWithoutBackdropClick(dialog)" data-testid="open-dialog-no-backdrop-click-btn">Open without backdrop click</button>
       </nb-card-body>
     </nb-card>
   </div>
 
   <div class="col-md-12 col-lg-6 col-xxxl-3">
-    <nb-card class="form-input-card">
+    <nb-card class="form-input-card" data-testid="return-result-from-dialog-card">
       <nb-card-header>Return Result From Dialog</nb-card-header>
       <nb-card-body class="result-from-dialog">
-        <button nbButton (click)="open3()">Enter Name</button>
+        <button nbButton (click)="open3()" data-testid="enter-name-btn">Enter Name</button>
         <br>
         <h3 class="title">Names:</h3>
-        <ul>
-          <li *ngFor="let name of names">{{ name }}</li>
+        <ul data-testid="names-list">
+          <li *ngFor="let name of names" data-testid="name-item">{{ name }}</li>
         </ul>
       </nb-card-body>
     </nb-card>
@@ -59,11 +59,11 @@
 </div>
 
 <ng-template #dialog let-data let-ref="dialogRef">
-  <nb-card>
+  <nb-card data-testid="template-dialog">
     <nb-card-header>Template Dialog</nb-card-header>
-    <nb-card-body>{{ data }}</nb-card-body>
+    <nb-card-body data-testid="template-dialog-body">{{ data }}</nb-card-body>
     <nb-card-footer>
-      <button nbButton (click)="ref.close()">Close Dialog</button>
+      <button nbButton (click)="ref.close()" data-testid="close-template-dialog-btn">Close Dialog</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

@@ -1,6 +1,6 @@
-<nb-card>
+<nb-card data-testid="showcase-dialog">
   <nb-card-header>{{ title }}</nb-card-header>
-  <nb-card-body>
+  <nb-card-body data-testid="showcase-dialog-body">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis tincidunt tincidunt.
     Vestibulum vulputate maximus massa vel tristique. Suspendisse potenti. Duis aliquet purus sed dictum dictum.
     Donec fringilla, purus at fermentum imperdiet, velit enim malesuada turpis, quis luctus arcu arcu nec orci.
@@ -9,6 +9,6 @@
     in aliquet massa aliquet et.
   </nb-card-body>
   <nb-card-footer>
-    <button nbButton hero status="primary" (click)="dismiss()">Dismiss Dialog</button>
+    <button nbButton hero status="primary" (click)="dismiss()" data-testid="dismiss-showcase-dialog-btn">Dismiss Dialog</button>
   </nb-card-footer>
 </nb-card>

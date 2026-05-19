@@ -1,36 +1,36 @@
 <div class="row">
   <div class="col-md-12 col-lg-6 col-xxxl-4">
-    <nb-card>
+    <nb-card data-testid="tooltip-icon-card">
       <nb-card-header>Tooltip With Icon</nb-card-header>
       <nb-card-body>
-        <button nbTooltip="This is a tooltip" nbTooltipIcon="home-outline" nbButton>Show Tooltip</button>
-        <button nbTooltip="" nbTooltipIcon="alert-triangle" nbTooltipStatus="danger" nbButton>Show Tooltip</button>
+        <button nbTooltip="This is a tooltip" nbTooltipIcon="home-outline" nbButton data-testid="tooltip-home-btn">Show Tooltip</button>
+        <button nbTooltip="" nbTooltipIcon="alert-triangle" nbTooltipStatus="danger" nbButton data-testid="tooltip-empty-btn">Show Tooltip</button>
       </nb-card-body>
     </nb-card>
   </div>
 
   <div class="col-md-12 col-lg-6 col-xxxl-4">
-    <nb-card>
+    <nb-card data-testid="tooltip-placement-card">
       <nb-card-header>Tooltip Placements</nb-card-header>
       <nb-card-body>
-        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbButton>Top</button>
-        <button nbTooltip="This is a tooltip" nbTooltipPlacement="right" nbButton>Right</button>
-        <button nbTooltip="This is a tooltip" nbTooltipPlacement="bottom" nbButton>Bottom</button>
-        <button nbTooltip="This is a tooltip" nbTooltipPlacement="left" nbButton>Left</button>
+        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbButton data-testid="tooltip-top-btn">Top</button>
+        <button nbTooltip="This is a tooltip" nbTooltipPlacement="right" nbButton data-testid="tooltip-right-btn">Right</button>
+        <button nbTooltip="This is a tooltip" nbTooltipPlacement="bottom" nbButton data-testid="tooltip-bottom-btn">Bottom</button>
+        <button nbTooltip="This is a tooltip" nbTooltipPlacement="left" nbButton data-testid="tooltip-left-btn">Left</button>
       </nb-card-body>
     </nb-card>
   </div>
 
   <div class="col-md-12 col-lg-6 col-xxxl-4">
-    <nb-card>
+    <nb-card data-testid="tooltip-colored-card">
       <nb-card-header>Colored Tooltips</nb-card-header>
       <nb-card-body>
-        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbButton>Default</button>
-        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbTooltipStatus="primary" nbButton>Primary</button>
-        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbTooltipStatus="success" nbButton>Success</button>
-        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbTooltipStatus="danger" nbButton>Danger</button>
-        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbTooltipStatus="info" nbButton>Info</button>
-        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbTooltipStatus="warning" nbButton>Warning</button>
+        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbButton data-testid="tooltip-default-btn">Default</button>
+        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbTooltipStatus="primary" nbButton data-testid="tooltip-primary-btn">Primary</button>
+        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbTooltipStatus="success" nbButton data-testid="tooltip-success-btn">Success</button>
+        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbTooltipStatus="danger" nbButton data-testid="tooltip-danger-btn">Danger</button>
+        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbTooltipStatus="info" nbButton data-testid="tooltip-info-btn">Info</button>
+        <button nbTooltip="This is a tooltip" nbTooltipPlacement="top" nbTooltipStatus="warning" nbButton data-testid="tooltip-warning-btn">Warning</button>
       </nb-card-body>
     </nb-card>
   </div>
