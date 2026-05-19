@@ -10,6 +10,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : 1,
   reporter: [
     ['list'],
+    ['html', { outputFolder: 'playwright-visual-report', open: 'never' }],
     [
       '@argos-ci/playwright/reporter',
       {
